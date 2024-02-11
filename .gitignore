@@ -1,0 +1,20 @@
+/node_modules
+/dist
+/.parcel-cache
+#parcel
+-Dev Build 
+-Local Server
+-HMR (Hot Module Replacement)
+-File watching Algorithm - written in c++
+-Caching - Faster Builds
+-Image Optimization
+-Minification
+-Bundle
+-Compress
+-code splitting
+-Differential Bundling - support older browsers
+- Diagnostic (better visibilty of errors)
+-Error Handling
+-HTTPs
+-Tree shaking (removed unused code)
+-Different Dev and Prod Build
