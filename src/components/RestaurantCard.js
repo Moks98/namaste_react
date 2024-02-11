@@ -4,7 +4,7 @@ const RestaurantCard = (props) => {
     responseData?.info;
   console.log(responseData, "response=====");
 
-  //const cloudId = "b2edbc28b7b8219d6e0a9c049ce06658";
+  //const cloudId = "b2edbc28b7b8219d6e0a9c049ce06658"
   return (
     <div className="res-card" style={{ background: "#F0F0F0" }}>
       <img
