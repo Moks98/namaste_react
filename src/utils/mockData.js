@@ -24,7 +24,7 @@ const responseList = {
               "Portuguese",
               "Continental",
             ],
-            avgRating: 4.4,
+            avgRating: 3.2,
             parentId: "371281",
             avgRatingString: "4.4",
             totalRatingsString: "10K+",
@@ -236,7 +236,7 @@ const responseList = {
             areaName: "KORAMANGALA",
             costForTwo: "₹250 for two",
             cuisines: ["Biryani", "Thalis", "Home Food"],
-            avgRating: 4.7,
+            avgRating: 3.7,
             parentId: "10655",
             avgRatingString: "4.7",
             totalRatingsString: "20+",
@@ -671,3 +671,4 @@ const responseList = {
     },
   },
 };
+export default responseList;

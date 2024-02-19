@@ -1,8 +1,8 @@
+import { CLOUD_IMAGE_URL } from "../utils/constants";
 const RestaurantCard = (props) => {
   const { responseData } = props;
   const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } =
     responseData?.info;
-  console.log(responseData, "response=====");
 
   //const cloudId = "b2edbc28b7b8219d6e0a9c049ce06658"
   return (
@@ -10,10 +10,10 @@ const RestaurantCard = (props) => {
       <img
         alt="food-card"
         className="res-logo"
-        src={"" + cloudinaryImageId}
+        src={CLOUD_IMAGE_URL + cloudinaryImageId}
       ></img>
       <h3>{name}</h3>
-      <h4>{cuisines}</h4>
+      <h4>{cuisines.join(" , ")}</h4>
       <h4>{avgRating}</h4>
       <h4>{costForTwo}</h4>
       <h4>{responseData.info.sla.slaString}</h4>
