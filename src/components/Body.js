@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -8,6 +8,7 @@ const Body = () => {
   const [searchText, SetSearchText] = useState("");
   const [searchedList, SetSearchList] = useState([]);
   const onlineStatus = useOnlineStatus();
+  const PromotedRestuarant = withPromotedLabel(RestaurantCard);
   useEffect(() => {
     console.log("use effect excecuted....");
     fetchRestuarantData();
@@ -22,10 +23,12 @@ const Body = () => {
       apiResponse?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
+
     SetSearchList(
       apiResponse?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
+    console.log(listofRestaurants);
   };
 
   if (!onlineStatus) {
@@ -38,6 +41,7 @@ const Body = () => {
       {/* <div className="search">Search</div> */}
       <div className="search-container">
         <input
+          className="border border-gray-300 hover:border-gray-500 m-2"
           type="text"
           placeholder="Search...."
           value={searchText}
@@ -47,6 +51,7 @@ const Body = () => {
           }}
         ></input>
         <button
+          className="bg-green-500 m-1 p-1"
           onClick={() => {
             const searchedRestuarants = listofRestaurants.filter((res) =>
               res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -58,7 +63,7 @@ const Body = () => {
         </button>
       </div>
       <button
-        className="filter-btn"
+        className="bg-purple-400 m-1 p-1 rounded-sm"
         onClick={() => {
           const filteredRestuarantList = listofRestaurants.filter(
             (res) => res.info.avgRating > 4
@@ -69,13 +74,17 @@ const Body = () => {
       >
         Top Rated Restuarants
       </button>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {searchedList.map((restuarant) => (
           <Link
             key={restuarant.info.id}
             to={"/restuarantmenu/" + restuarant.info.id}
           >
-            <RestaurantCard responseData={restuarant} />
+            {restuarant.info.isOpen ? (
+              <PromotedRestuarant responseData={restuarant} />
+            ) : (
+              <RestaurantCard responseData={restuarant} />
+            )}
           </Link>
         ))}
         {/* pass js object in component */}
