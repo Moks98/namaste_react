@@ -1,6 +1,5 @@
 import { CLOUD_IMAGE_URL } from "../utils/constants";
 const ItemsList = ({ items }) => {
-  console.log(items, "items list");
   return (
     <div>
       {items.map((item) => (

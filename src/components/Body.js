@@ -10,7 +10,6 @@ const Body = () => {
   const onlineStatus = useOnlineStatus();
   const PromotedRestuarant = withPromotedLabel(RestaurantCard);
   useEffect(() => {
-    console.log("use effect excecuted....");
     fetchRestuarantData();
   }, []);
   const fetchRestuarantData = async () => {
@@ -28,7 +27,6 @@ const Body = () => {
       apiResponse?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
-    console.log(listofRestaurants);
   };
 
   if (!onlineStatus) {
@@ -47,7 +45,6 @@ const Body = () => {
           value={searchText}
           onChange={(e) => {
             SetSearchText(e.target.value);
-            console.log(searchText);
           }}
         ></input>
         <button
@@ -69,7 +66,6 @@ const Body = () => {
             (res) => res.info.avgRating > 4
           );
           SetListofRestaurants(filteredRestuarantList);
-          console.log("filtered response----", filteredRestuarantList);
         }}
       >
         Top Rated Restuarants

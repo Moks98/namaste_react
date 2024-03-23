@@ -8,11 +8,6 @@ const RestaurantMenu = () => {
   const [showIndex, setShowIndex] = useState(null); // manages index of accordion
   const responseInfo = useRestaurantMenu(resId); // custom hook
 
-  console.log(
-    responseInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
-      ?.card
-  );
-
   const categories =
     responseInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (cat) =>
