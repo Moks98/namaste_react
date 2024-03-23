@@ -3,7 +3,7 @@ import { useState } from "react";
 const RestaurantCategory = ({ data, showItems, showIndex }) => {
   const handleClick = () => {
     console.log("clicked menu div");
-    showIndex();
+    showIndex(); // triggering function
   };
   return (
     <div onClick={handleClick}>

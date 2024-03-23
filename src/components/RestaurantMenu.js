@@ -5,15 +5,13 @@ import RestaurantCategory from "./RestuarantCategory";
 import Shimmer from "./Shimmer";
 const RestaurantMenu = () => {
   const { resId } = useParams();
-  const [showIndex, setShowIndex] = useState(null);
+  const [showIndex, setShowIndex] = useState(null); // manages index of accordion
   const responseInfo = useRestaurantMenu(resId); // custom hook
 
   console.log(
     responseInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
       ?.card
   );
-  // const { itemCards = [] } =
-  //   responseInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card;
 
   const categories =
     responseInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
@@ -32,8 +30,8 @@ const RestaurantMenu = () => {
           <RestaurantCategory
             key={category?.card?.card.title}
             data={category?.card?.card}
-            showItems={index === showIndex ? true : false}
-            showIndex={() => setShowIndex(index)}
+            showItems={index === showIndex ? true : false} // based on this prop values are shown and hidden
+            showIndex={() => setShowIndex(index)} //when clicked here it gets current index and value gets set in showIndex
           />
         </div>
       ))}
