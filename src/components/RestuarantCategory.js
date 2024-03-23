@@ -2,7 +2,6 @@ import ItemsList from "./ItemsList";
 import { useState } from "react";
 const RestaurantCategory = ({ data, showItems, showIndex }) => {
   const handleClick = () => {
-    console.log("clicked menu div");
     showIndex(); // triggering function
   };
   return (
