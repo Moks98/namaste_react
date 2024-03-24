@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 const Body = () => {
   const [listofRestaurants, SetListofRestaurants] = useState([]);
   const [searchText, SetSearchText] = useState("");
   const [searchedList, SetSearchList] = useState([]);
   const onlineStatus = useOnlineStatus();
+
   const PromotedRestuarant = withPromotedLabel(RestaurantCard);
   useEffect(() => {
     fetchRestuarantData();
@@ -32,6 +34,9 @@ const Body = () => {
   if (!onlineStatus) {
     return <div>Looks like you are offline !!</div>;
   }
+
+  const { loggedInUser, setUserName } = useContext(UserContext);
+  console.log(useContext(UserContext));
   return listofRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
@@ -59,17 +64,26 @@ const Body = () => {
           Search
         </button>
       </div>
-      <button
-        className="bg-purple-400 m-1 p-1 rounded-sm"
-        onClick={() => {
-          const filteredRestuarantList = listofRestaurants.filter(
-            (res) => res.info.avgRating > 4
-          );
-          SetListofRestaurants(filteredRestuarantList);
-        }}
-      >
-        Top Rated Restuarants
-      </button>
+      <div className="flex p-2">
+        <button
+          className="bg-purple-400 m-1 p-1 rounded-sm"
+          onClick={() => {
+            const filteredRestuarantList = listofRestaurants.filter(
+              (res) => res.info.avgRating > 4
+            );
+            SetListofRestaurants(filteredRestuarantList);
+          }}
+        >
+          Top Rated Restuarants
+        </button>
+      </div>
+      <div className="flex p-2">
+        <input
+          className="border border-solid border-black"
+          value={loggedInUser}
+          onChange={(e) => setUserName(e.target.value)}
+        ></input>
+      </div>
       <div className="flex flex-wrap">
         {searchedList.map((restuarant) => (
           <Link
