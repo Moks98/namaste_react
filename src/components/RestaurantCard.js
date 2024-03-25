@@ -6,10 +6,10 @@ const RestaurantCard = (props) => {
 
   //const cloudId = "b2edbc28b7b8219d6e0a9c049ce06658"
   return (
-    <div className="res-card" style={{ background: "#F0F0F0" }}>
+    <div className="m-4 p-4 w-[200px] bg-gray-100 rounded-lg hover:bg-gray-300">
       <img
         alt="food-card"
-        className="res-logo"
+        className="w-20"
         src={CLOUD_IMAGE_URL + cloudinaryImageId}
       ></img>
       <h3>{name}</h3>
@@ -20,5 +20,14 @@ const RestaurantCard = (props) => {
     </div>
   );
 };
-
+export const withPromotedLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="absolute bg-black text-white rounded-md">open</label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
 export default RestaurantCard;
